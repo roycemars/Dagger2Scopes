@@ -4,11 +4,11 @@ import android.app.Application;
 import android.content.Context;
 
 import cmars.dagger2scopes.api.ApiHelper;
-import cmars.dagger2scopes.app.component.AppComponent;
-import cmars.dagger2scopes.app.component.DaggerAppComponent;
-import cmars.dagger2scopes.app.component.UserComponent;
-import cmars.dagger2scopes.app.module.AppModule;
-import cmars.dagger2scopes.app.module.UserModule;
+import cmars.dagger2scopes.api.di.UserComponent;
+import cmars.dagger2scopes.api.di.UserModule;
+import cmars.dagger2scopes.app.di.AppComponent;
+import cmars.dagger2scopes.app.di.AppModule;
+import cmars.dagger2scopes.app.di.DaggerAppComponent;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import timber.log.Timber;

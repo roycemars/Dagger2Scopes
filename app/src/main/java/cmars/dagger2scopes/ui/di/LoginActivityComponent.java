@@ -1,8 +1,7 @@
-package cmars.dagger2scopes.ui.component;
+package cmars.dagger2scopes.ui.di;
 
 import cmars.dagger2scopes.ui.activity.ActivityScope;
 import cmars.dagger2scopes.ui.activity.LoginActivity;
-import cmars.dagger2scopes.ui.module.LoginActivityModule;
 import dagger.Subcomponent;
 
 /**

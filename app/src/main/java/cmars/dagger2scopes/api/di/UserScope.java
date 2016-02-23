@@ -1,4 +1,4 @@
-package cmars.dagger2scopes.app;
+package cmars.dagger2scopes.api.di;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

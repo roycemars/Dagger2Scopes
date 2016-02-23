@@ -1,4 +1,4 @@
-package cmars.dagger2scopes.ui.module;
+package cmars.dagger2scopes.ui.di;
 
 import dagger.Module;
 

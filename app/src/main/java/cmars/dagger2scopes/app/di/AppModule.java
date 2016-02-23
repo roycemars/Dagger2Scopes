@@ -1,4 +1,4 @@
-package cmars.dagger2scopes.app.module;
+package cmars.dagger2scopes.app.di;
 
 import android.app.Application;
 

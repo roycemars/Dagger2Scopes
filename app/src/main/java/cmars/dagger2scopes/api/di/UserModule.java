@@ -1,7 +1,6 @@
-package cmars.dagger2scopes.app.module;
+package cmars.dagger2scopes.api.di;
 
 import cmars.dagger2scopes.api.ApiHelper.User;
-import cmars.dagger2scopes.app.UserScope;
 import dagger.Module;
 import dagger.Provides;
 

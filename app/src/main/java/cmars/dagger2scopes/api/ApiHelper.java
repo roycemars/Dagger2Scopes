@@ -15,13 +15,12 @@ import rx.schedulers.Schedulers;
 
 /**
  * Created by Constantine Mars on 2/22/16.
+ * Simple Helper for REST API access
  */
-@SuppressWarnings("DefaultFileTemplate")
+
 @Singleton
 @Data
 public class ApiHelper {
-    private String response = "dagger works!";
-    private String memory = "";
 
     @Inject
     public ApiHelper() {
@@ -45,8 +44,9 @@ public class ApiHelper {
         Observable<User> getUser(@Path("user") String user);
     }
 
+    @Data
     public static class User {
-        String login,
+        protected String login,
                 url,
                 type,
                 name,

@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import cmars.dagger2scopes.R;
 import cmars.dagger2scopes.api.ApiHelper.User;
 import cmars.dagger2scopes.app.App;
-import cmars.dagger2scopes.ui.module.LoginActivityModule;
+import cmars.dagger2scopes.ui.di.LoginActivityModule;
 import cmars.dagger2scopes.ui.presenter.LoginActivityPresenter;
 import cmars.dagger2scopes.ui.view.LoginView;
 

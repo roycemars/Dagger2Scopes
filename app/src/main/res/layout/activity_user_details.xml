@@ -7,19 +7,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ui.activity.MainActivity">
+    tools:context="cmars.dagger2scopes.ui.activity.UserDetailsActivity">
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content" />
 
-        android:text="Hello World!" />
-
-    <Button
-        android:id="@+id/details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="details" />
 </RelativeLayout>
