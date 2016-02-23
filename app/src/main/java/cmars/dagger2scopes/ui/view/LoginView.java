@@ -1,6 +1,6 @@
 package cmars.dagger2scopes.ui.view;
 
-import cmars.dagger2scopes.model.User;
+import cmars.dagger2scopes.api.ApiHelper.User;
 
 /**
  * Created by Constantine Mars on 23/02/16.

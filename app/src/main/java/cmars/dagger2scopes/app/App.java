@@ -3,18 +3,20 @@ package cmars.dagger2scopes.app;
 import android.app.Application;
 import android.content.Context;
 
+import cmars.dagger2scopes.api.ApiHelper;
 import cmars.dagger2scopes.app.component.AppComponent;
 import cmars.dagger2scopes.app.component.DaggerAppComponent;
 import cmars.dagger2scopes.app.component.UserComponent;
 import cmars.dagger2scopes.app.module.AppModule;
 import cmars.dagger2scopes.app.module.UserModule;
-import cmars.dagger2scopes.model.User;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import timber.log.Timber;
 
 /**
  * Created by Constantine Mars on 2/22/16.
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class App extends Application {
     private AppComponent appComponent;
@@ -38,7 +40,7 @@ public class App extends Application {
                 .build();
     }
 
-    public UserComponent createUserComponent(User user) {
+    public UserComponent createUserComponent(ApiHelper.User user) {
         userComponent = appComponent.plus(new UserModule(user));
         return userComponent;
     }
