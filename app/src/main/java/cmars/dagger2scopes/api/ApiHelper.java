@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class ApiHelper {
     private String response = "dagger works!";
-    private String request = "";
+    private String memory = "";
 
     @Inject
     public ApiHelper() {
