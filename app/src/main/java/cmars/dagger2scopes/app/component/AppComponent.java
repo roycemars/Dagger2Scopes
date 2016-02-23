@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import cmars.dagger2scopes.app.module.ApiModule;
 import cmars.dagger2scopes.app.module.AppModule;
+import cmars.dagger2scopes.app.module.UserModule;
 import cmars.dagger2scopes.ui.component.LoginActivityComponent;
 import cmars.dagger2scopes.ui.module.LoginActivityModule;
 import dagger.Component;
@@ -18,4 +19,6 @@ import dagger.Component;
 })
 public interface AppComponent {
     LoginActivityComponent plus(LoginActivityModule module);
+
+    UserComponent plus(UserModule module);
 }

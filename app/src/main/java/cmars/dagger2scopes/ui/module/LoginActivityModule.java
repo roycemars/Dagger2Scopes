@@ -1,6 +1,7 @@
 package cmars.dagger2scopes.ui.module;
 
 import cmars.dagger2scopes.ui.activity.ActivityScope;
+import cmars.dagger2scopes.ui.activity.LoginActivity;
 import cmars.dagger2scopes.ui.presenter.LoginActivityPresenter;
 import dagger.Module;
 import dagger.Provides;
@@ -10,9 +11,15 @@ import dagger.Provides;
  */
 @Module
 public class LoginActivityModule {
+    private LoginActivity activity;
+
+    public LoginActivityModule(LoginActivity activity) {
+        this.activity = activity;
+    }
+
     @Provides
     @ActivityScope
     LoginActivityPresenter presenter() {
-        return new LoginActivityPresenter();
+        return new LoginActivityPresenter(activity);
     }
 }

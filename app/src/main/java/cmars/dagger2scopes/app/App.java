@@ -5,7 +5,10 @@ import android.content.Context;
 
 import cmars.dagger2scopes.app.component.AppComponent;
 import cmars.dagger2scopes.app.component.DaggerAppComponent;
+import cmars.dagger2scopes.app.component.UserComponent;
 import cmars.dagger2scopes.app.module.AppModule;
+import cmars.dagger2scopes.app.module.UserModule;
+import cmars.dagger2scopes.model.User;
 import lombok.Data;
 import timber.log.Timber;
 
@@ -15,6 +18,7 @@ import timber.log.Timber;
 @Data
 public class App extends Application {
     private AppComponent appComponent;
+    private UserComponent userComponent;
 
     public static App get(Context context) {
         return (App) context.getApplicationContext();
@@ -32,5 +36,14 @@ public class App extends Application {
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
+    }
+
+    public UserComponent createUserComponent(User user) {
+        userComponent = appComponent.plus(new UserModule(user));
+        return userComponent;
+    }
+
+    public void releaseUserComponent() {
+        userComponent = null;
     }
 }

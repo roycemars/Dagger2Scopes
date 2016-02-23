@@ -10,10 +10,12 @@ import javax.inject.Inject;
 
 import cmars.dagger2scopes.R;
 import cmars.dagger2scopes.app.App;
+import cmars.dagger2scopes.model.User;
 import cmars.dagger2scopes.ui.module.LoginActivityModule;
 import cmars.dagger2scopes.ui.presenter.LoginActivityPresenter;
+import cmars.dagger2scopes.ui.view.LoginView;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements LoginView {
     @Inject
     LoginActivityPresenter presenter;
 
@@ -28,8 +30,7 @@ public class LoginActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.test();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                presenter.loadUser();
             }
         });
     }
@@ -38,8 +39,13 @@ public class LoginActivity extends BaseActivity {
     protected void setupActivityComponent() {
         App.get(this)
                 .getAppComponent()
-                .plus(new LoginActivityModule())
+                .plus(new LoginActivityModule(LoginActivity.this))
                 .inject(this);
     }
 
+    @Override
+    public void onUserDownloaded(User user) {
+        App.get(this).createUserComponent(user);
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+    }
 }
