@@ -23,4 +23,10 @@ public class MainActivity extends BaseActivity implements MainView {
                 .plus(new MainActivityModule())
                 .inject(this);
     }
+
+    @Override
+    public void finish() {
+        App.get(this).releaseUserComponent();
+        super.finish();
+    }
 }
