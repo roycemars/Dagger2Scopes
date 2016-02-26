@@ -4,6 +4,8 @@ import android.app.Application;
 
 import javax.inject.Singleton;
 
+import cmars.dagger2scopes.entities.Car;
+import cmars.dagger2scopes.entities.Engine;
 import dagger.Module;
 import dagger.Provides;
 
@@ -23,4 +25,10 @@ public class AppModule {
     public Application application() {
         return application;
     }
+
+    @Provides
+    Car car(Engine engine) {
+        return new Car("Ford", engine);
+    }
+
 }

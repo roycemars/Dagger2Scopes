@@ -4,20 +4,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import javax.inject.Inject;
 
 import cmars.dagger2scopes.R;
 import cmars.dagger2scopes.api.ApiHelper.User;
 import cmars.dagger2scopes.app.App;
+import cmars.dagger2scopes.entities.Car;
+import cmars.dagger2scopes.entities.Engine;
 import cmars.dagger2scopes.ui.di.LoginActivityModule;
 import cmars.dagger2scopes.ui.presenter.LoginActivityPresenter;
 import cmars.dagger2scopes.ui.view.LoginView;
+import timber.log.Timber;
 
 public class LoginActivity extends BaseActivity implements LoginView {
     @Inject
     LoginActivityPresenter presenter;
+
+    @Inject
+    Car car;
+    @Inject
+    Engine engine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +33,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Timber.d(engine.getModel());
+        Timber.d(car.getName());
+        Timber.d(car.getEngine().getModel());
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.loadUser();
-            }
-        });
+        fab.setOnClickListener(view -> presenter.loadUser());
     }
 
     @Override
