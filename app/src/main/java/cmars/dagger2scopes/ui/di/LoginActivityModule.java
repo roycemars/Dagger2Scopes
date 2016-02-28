@@ -12,7 +12,7 @@ import dagger.Provides;
  */
 @Module
 public class LoginActivityModule {
-    private LoginActivity activity;
+    protected LoginActivity activity;
 
 
     public LoginActivityModule(LoginActivity activity) {
@@ -21,7 +21,7 @@ public class LoginActivityModule {
 
     @Provides
     @ActivityScope
-    LoginActivityPresenter presenter(ApiHelper apiHelper) {
+    public LoginActivityPresenter presenter(ApiHelper apiHelper) {
         return new LoginActivityPresenter(apiHelper, activity);
     }
 }

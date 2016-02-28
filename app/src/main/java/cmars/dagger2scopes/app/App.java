@@ -34,9 +34,13 @@ public class App extends Application {
         initAppComponent();
     }
 
+    protected DaggerAppComponent.Builder prepareAppComponent() {
+        return DaggerAppComponent.builder()
+                .appModule(new AppModule(this));
+    }
+
     private void initAppComponent() {
-        appComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
+        appComponent = prepareAppComponent()
                 .build();
     }
 

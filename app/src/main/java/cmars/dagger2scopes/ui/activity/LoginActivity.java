@@ -12,6 +12,7 @@ import cmars.dagger2scopes.api.ApiHelper.User;
 import cmars.dagger2scopes.app.App;
 import cmars.dagger2scopes.entities.Car;
 import cmars.dagger2scopes.entities.Engine;
+import cmars.dagger2scopes.ui.di.LoginActivityComponent;
 import cmars.dagger2scopes.ui.di.LoginActivityModule;
 import cmars.dagger2scopes.ui.presenter.LoginActivityPresenter;
 import cmars.dagger2scopes.ui.view.LoginView;
@@ -41,11 +42,15 @@ public class LoginActivity extends BaseActivity implements LoginView {
         fab.setOnClickListener(view -> presenter.loadUser());
     }
 
+    protected LoginActivityComponent prepareActivityComponent() {
+        return App.get(this)
+                .getAppComponent()
+                .plus(new LoginActivityModule(LoginActivity.this));
+    }
+
     @Override
     protected void setupActivityComponent() {
-        App.get(this)
-                .getAppComponent()
-                .plus(new LoginActivityModule(LoginActivity.this))
+        prepareActivityComponent()
                 .inject(this);
     }
 

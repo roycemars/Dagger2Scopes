@@ -9,9 +9,7 @@ import lombok.Data;
  */
 @Data
 public class Car {
-    //    @Inject
     protected Engine engine;
-
     private String name;
 
     @Inject
