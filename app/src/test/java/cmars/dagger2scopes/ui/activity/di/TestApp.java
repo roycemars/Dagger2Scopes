@@ -1,4 +1,4 @@
-package cmars.dagger2scopes.ui.activity;
+package cmars.dagger2scopes.ui.activity.di;
 
 import cmars.dagger2scopes.app.App;
 import cmars.dagger2scopes.app.di.DaggerAppComponent;

@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import cmars.dagger2scopes.api.ApiHelper;
 import cmars.dagger2scopes.ui.view.LoginView;
 import lombok.Data;
+import timber.log.Timber;
 
 /**
  * Created by Constantine Mars on 23/02/16.
@@ -21,11 +22,11 @@ public class LoginActivityPresenter {
     }
 
     public void loadUser() {
-        apiHelper.getUser();
-//                .subscribe(
-//                        view::onUserDownloaded,
-//                        throwable -> Timber.e(throwable.getMessage())
-//                );
+        apiHelper.getUser()
+                .subscribe(
+                        view::onUserDownloaded,
+                        throwable -> Timber.e(throwable.getMessage())
+                );
 
     }
 }

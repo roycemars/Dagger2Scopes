@@ -1,5 +1,6 @@
 package cmars.dagger2scopes.ui.activity;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,9 +12,15 @@ import org.robolectric.util.ActivityController;
 import cmars.dagger2scopes.BuildConfig;
 import cmars.dagger2scopes.api.ApiHelper;
 import cmars.dagger2scopes.app.di.AppComponent;
+import cmars.dagger2scopes.ui.activity.di.TestApp;
 import cmars.dagger2scopes.ui.activity.di.TestLoginActivityModule;
+import cmars.dagger2scopes.ui.activity.utils.RxDaggerRobolectricTestRunner;
 import cmars.dagger2scopes.ui.di.LoginActivityComponent;
 import cmars.dagger2scopes.ui.presenter.LoginActivityPresenter;
+import rx.Scheduler;
+import rx.android.plugins.RxAndroidPlugins;
+import rx.android.plugins.RxAndroidSchedulersHook;
+import rx.schedulers.Schedulers;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -23,7 +30,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by Constantine Mars on 28/02/16.
  */
-@RunWith(DaggerRobolectricTestRunner.class)
+@RunWith(RxDaggerRobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
 public class LoginActivityTest {
 
@@ -32,9 +39,20 @@ public class LoginActivityTest {
 
     @Before
     public void setup() {
+        RxAndroidPlugins.getInstance().registerSchedulersHook(new RxAndroidSchedulersHook() {
+            @Override
+            public Scheduler getMainThreadScheduler() {
+                return Schedulers.immediate();
+            }
+        });
+
         TestApp app = (TestApp) RuntimeEnvironment.application;
         appComponent = app.getAppComponent();
+    }
 
+    @After
+    public void tearDown() {
+        RxAndroidPlugins.getInstance().reset();
     }
 
     @Test
@@ -50,6 +68,8 @@ public class LoginActivityTest {
         LoginActivityPresenter presenter = activity.presenter;
 
         ApiHelper apiHelper = mock(ApiHelper.class);
+        doReturn(rx.Observable.just(null)).when(apiHelper).getUser();
+
         presenter.setApiHelper(apiHelper);
         presenter.loadUser();
         verify(apiHelper).getUser();
