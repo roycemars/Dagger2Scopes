@@ -17,6 +17,7 @@ import cmars.dagger2scopes.ui.activity.di.TestLoginActivityModule;
 import cmars.dagger2scopes.ui.activity.utils.RxDaggerRobolectricTestRunner;
 import cmars.dagger2scopes.ui.di.LoginActivityComponent;
 import cmars.dagger2scopes.ui.presenter.LoginActivityPresenter;
+import cmars.dagger2scopes.ui.view.LoginView;
 import rx.Scheduler;
 import rx.android.plugins.RxAndroidPlugins;
 import rx.android.plugins.RxAndroidSchedulersHook;
@@ -69,10 +70,14 @@ public class LoginActivityTest {
 
         ApiHelper apiHelper = mock(ApiHelper.class);
         doReturn(rx.Observable.just(null)).when(apiHelper).getUser();
-
         presenter.setApiHelper(apiHelper);
+
+        LoginView view = mock(LoginView.class);
+        presenter.setView(view);
+
         presenter.loadUser();
         verify(apiHelper).getUser();
+        verify(view).onUserDownloaded(null);
     }
 
 
