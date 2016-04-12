@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class Car {
     protected Engine engine;
-    private String name;
+    protected String name;
 
     @Inject
     public Car(String name, Engine engine) {
